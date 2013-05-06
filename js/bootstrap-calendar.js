@@ -3,21 +3,44 @@
  * Copyright (C) 2013 Fat Panda, LLC.
  * MIT Licensed.
  */
-!function($, ns) {
+!function($, B, ns) {
+
+  'use strict';
 
   var $window = $(window), $body = $('body'), prototypes = {};
 
   window.console = window.console || { log: function() {}, error: function() {} };
 
-  var prototypes[ns] = function($el, options) {
+  prototypes[ns] = function($el, options) {
     this.$el = $el;
     this.init(options);
   };
 
+  var DateCollection = Backbone.Collection.extend({
+        
+  });
+
+  var CalendarView = Backbone.View.extend({
+
+    initialize: function() {
+      this.collection = new DateCollection();
+    },
+
+    render: function() {
+      return this;
+    }
+
+  });
+
   prototypes[ns].prototype = {
 
     init: function(options) {
-      
+      this.$el.hide();
+      this.$el.after( this.$cal = $('<div class="bootstrap-calendar-coontainer"></div>') );
+      for(var i = 0; i < 6; i++) {
+        this.$cal.append('<div class="month-row"><table class="week"></table><table class="grid"></table></div>');
+      }
+      this.$view = new CalendarView({ el: this.$cal }).render();
     }
 
   };  
@@ -60,4 +83,4 @@
   };
   */
 
-}(jQuery, 'calendar');
+}(jQuery, Backbone, 'calendar');

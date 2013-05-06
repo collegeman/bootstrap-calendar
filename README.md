@@ -1,8 +1,6 @@
 Bootstrap-Calendar
 ================
 
-A collection of easy-to-setup content editors for Bootstrap.
-
 Read the [documentation here](http://collegeman.github.io/bootstrap-calendar).
 
 Licenses
